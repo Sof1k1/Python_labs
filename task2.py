@@ -6,7 +6,7 @@ money_capital = 0
 
 # TODO Рассчитайте подушку безопасности, чтобы протянуть 10 месяцев без долгов
 
-for i in range(0, months):
+for _ in range(months):
     money_capital += spend - salary
     spend = (spend * increase) + spend
 print(f"Подушка безопасности, чтобы протянуть {months} месяцев без долгов: {money_capital:.2f}")
