@@ -1,32 +1,76 @@
-from typing import Union
+import doctest
 
+class Spacecraft:
+    def __init__(self, model: str, speed: float):
+        """
+        Инициализирует объект Космический корабль
+        model: Модель космического корабля
+        speed: Скорость космического корабля
+        """
+        self.model = model
+        self.speed = speed
+        self.position = (0, 0, 0)  # (x, y, z) координаты в пространстве
 
-class Glass:
-    def __init__(self, capacity_volume: Union[int, float], occupied_volume: Union[int, float]):
-        #  TODO заменить на метод
-        self.init_capacity_volume(capacity_volume)
+    def move_to(self, destination: tuple) -> None:
+        """
+        Перемещает космический корабль в указанное место.
+        Координаты (x, y, z) места, куда переместить корабль
+        """
+        self.position = destination
+        print(f"{self.model} is moving to position {destination}.")
 
-        if not isinstance(capacity_volume, (int, float)):
-            raise TypeError
-        if not capacity_volume > 0:
-            raise ValueError
-        self.capacity_volume = capacity_volume  # объем стакана
+    def explore(self) -> None:
+        """ 
+        Запускает исследование космоса
+        """
+        print(f"{self.model} is exploring the cosmos.")
 
-        if not isinstance(occupied_volume, (int, float)):
-            raise TypeError
-        if occupied_volume < 0:
-            raise ValueError
-        self.occupied_volume = occupied_volume  # объем жидкости в стакане
+class Astronaut:
+    def __init__(self, name: str, age: int, space_experience: int):
+        """
+        Инициализирует объект Астронавт
 
-#  TODO создать метод, который будет инициализировать атрибут capacity_volume
-    def init_capacity_volume(self, capacity_volume: Union[int, float]):
-        if not isinstance(capacity_volume, (int, float)):
-            raise TypeError
-        if capacity_volume <= 0:
-            raise ValueError
-        self.capacity_volume = capacity_volume
+        name: Имя астронавта
+        age: Возраст астронавта
+        space_experience: Опыт полетов в космосе
+        """
+        self.name = name
+        self.age = age
+        self.space_experience = space_experience
+
+    def conduct_experiment(self) -> None:
+        """
+        Проводит научный эксперимент в космосе.
+        """
+        print(f"Astronaut {self.name} is conducting a space experiment.")
+
+    def spacewalk(self) -> None:
+        """
+        Осуществляет выход в открытый космос.
+        """
+        print(f"Astronaut {self.name} is performing a spacewalk.")
+
+class Planet:
+    def __init__(self, name: str, research_type: str, has_atmosphere: bool):
+        """
+        Инициализирует объект Планета
+
+        name: Название планеты
+        research_type: Тип исследования
+        has_atmosphere: Наличие атмосферы на планете
+        """
+        self.name = name
+        self.research_type = research_type
+        self.has_atmosphere = has_atmosphere
+
+    def analyze_atmosphere(self) -> None:
+        """
+        Анализирует атмосферу планеты.
+        """
+        if self.has_atmosphere:
+            print(f"Researchers are analyzing the atmosphere of exoplanet {self.name}.")
+        else:
+            print(f"Planet {self.name} does not have an atmosphere.")
 
 if __name__ == "__main__":
-    glass_instance = Glass(200, 100)
-    print(glass_instance.capacity_volume)  # TODO распечатать атрибут capacity_volume
-    print(glass_instance.occupied_volume)  # TODO распечатать атрибут occupied_volume
+    doctest.testmod()
